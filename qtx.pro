@@ -27,7 +27,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         qtx.cpp \
     qtxcnt.cpp \
-    qtxpoint.cpp
+    qtxpoint.cpp \
+    ../code/ar.cpp
 
 HEADERS += \
         qtx.h \

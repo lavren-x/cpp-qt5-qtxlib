@@ -11,7 +11,7 @@
 #ifndef QTX_H
 #define QTX_H
 
-#include "qtxglobal.h"
+//#include "qtxglobal.h"
 #include "qtxpoint.h"
 #include "qtxcnt.h"
 #include <QEvent>

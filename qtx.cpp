@@ -9,13 +9,7 @@
 */
 
 #include "qtx_inst.h"
-
-
 #include "qtx.h"
-///#include "qtxpoint.cpp"
-///#include "qtxcnt.cpp"
-#include "qtxpoint.h"
-#include "qtxcnt.h"
 
 #include <QtMultimedia/QSound>
 
