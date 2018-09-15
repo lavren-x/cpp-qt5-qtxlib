@@ -159,9 +159,9 @@ COLORREF txGetFillColor()
 }
 
 int txExtractColor (COLORREF color, COLORREF component)
+{
+    switch (component)
     {
-  switch (component)
-        {
         case TX_RED:
         case TX_HUE:         return (color >>  0) & 0xFF;
 
@@ -172,18 +172,18 @@ int txExtractColor (COLORREF color, COLORREF component)
         case TX_LIGHTNESS:   return (color >> 16) & 0xFF;
 
         default:             return CLR_INVALID;
-        }
     }
+}
 
 //-----------------------------------------------------------------------------------------------------------------
 
 COLORREF txRGB2HSL (COLORREF rgbColor)
-    {
-  int r = txExtractColor (rgbColor, TX_RED),
+{
+    int r = txExtractColor (rgbColor, TX_RED),
         g = txExtractColor (rgbColor, TX_GREEN),
         b = txExtractColor (rgbColor, TX_BLUE);
 
-   double m1 = MAX (MAX (r, g), b) / 255.0,
+    double m1 = MAX (MAX (r, g), b) / 255.0,
            m2 = MIN (MIN (r, g), b) / 255.0,
            dm = m1 - m2,
            sm = m1 + m2,
@@ -196,10 +196,10 @@ COLORREF txRGB2HSL (COLORREF rgbColor)
            is = 0,
            il = sm / 2;
 
-   const double prec = 0.001;
+    const double prec = 0.001;
 
-   if (fabs (dm) < prec)
-        {
+    if (fabs (dm) < prec)
+    {
        is = dm / ((sm <= 1)? sm : (2-sm));
 
        double cr = (m1 - ir) / dm,
@@ -209,12 +209,12 @@ COLORREF txRGB2HSL (COLORREF rgbColor)
        if (fabs (ir - m1) < prec) ih =     cb - cg;
        if (fabs (ig - m1) < prec) ih = 2 + cr - cb;
        if (fabs (ib - m1) < prec) ih = 4 + cg - cr;
-        }
-
-   ih = (ih >= 0)? ih*60 : ih*60 + 360;
-
-   return RGB ((unsigned char)ROUND (ih / 360 * 255), (unsigned char)ROUND (is * 255), (unsigned char)ROUND (il * 255));
     }
+
+    ih = (ih >= 0)? ih*60 : ih*60 + 360;
+
+    return RGB ((unsigned char)ROUND (ih / 360 * 255), (unsigned char)ROUND (is * 255), (unsigned char)ROUND (il * 255));
+}
 
 //-----------------------------------------------------------------------------------------------------------------
 
