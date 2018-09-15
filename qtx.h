@@ -11,9 +11,8 @@
 #ifndef QTX_H
 #define QTX_H
 
-//#include "qtxglobal.h"
 #include "qtxpoint.h"
-#include "qtxcnt.h"
+
 #include <QEvent>
 
 const QEvent::Type AppExitEventType =
@@ -27,22 +26,6 @@ public:
 
 inline int ABS(int n) { if(n < 0) return -n; else return n; }
 inline void _LESSZERO(int &n) { if(n < 0) n = 0; }
-
-//class ConsoleApplication : public QCoreApplication
-//{
-//public:
-//    ConsoleApplication(int argc, char** argv)
-//        : QCoreApplication(argc, argv) {}
-
-//protected:
-//    void customEvent(QEvent *event)
-//    {
-//        if (event->type() ==  AppExitEventType)
-//            QCoreApplication::quit();
-//        else
-//            QCoreApplication::customEvent(event);
-//    }
-//};
 
 class CustomApplication : public QApplication
 {
@@ -142,7 +125,6 @@ public:
     QTxContainer *container;
     QDialog *dialog;
     QFont *font;
-    //QApplication *app;
     CustomApplication *app;
     int argc;
     char *argv[2];
@@ -157,9 +139,9 @@ public:
     bool begin;
     bool eventLoopStarted;
     bool needToExitAppWithoutEventLoop;
-}/*
-**qtxlist,
-*qtx*/
-;
+};
+
+static Qtx **qtxlist = NULL;
+static Qtx *qtx = NULL;
 
 #endif

@@ -27,15 +27,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         qtx.cpp \
     qtxcnt.cpp \
-    qtxpoint.cpp \
-    ../code/ar.cpp
+    qtxpoint.cpp
 
 HEADERS += \
         qtx.h \
         qtx_global.h \ 
     libqtx.h \
     qtx_global.h \
-    qtx_inst.h \
     qtxcnt.h \
     qtxextern.h \
     qtxglobal.h \

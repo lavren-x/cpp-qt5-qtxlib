@@ -12,7 +12,7 @@
 #define QTXPOINT_H
 
 #include <QPoint>
-#include "qtxglobal.h"
+#include "qtxcnt.h"
 
 class QTXLIBSHARED_EXPORT QTxPoint
 {

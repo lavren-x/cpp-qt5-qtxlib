@@ -8,7 +8,6 @@
 	
 */
 
-#include "qtx_inst.h"
 #include "qtx.h"
 
 #include <QtMultimedia/QSound>

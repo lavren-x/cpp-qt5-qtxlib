@@ -14,7 +14,6 @@
 #include <math.h>
 #include <sys/time.h>
 
-#include "qtx_inst.h"
 #include "qtx.h"
 
 #include "txdefs.h"

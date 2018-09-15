@@ -12,6 +12,8 @@
 #ifndef QTXCNT_H
 #define QTXCNT_H
 
+#include "qtxglobal.h"
+
 #include <QLabel>
 #include <QKeyEvent>
 #include <QMouseEvent>
