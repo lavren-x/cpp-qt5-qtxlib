@@ -20,8 +20,7 @@
 
 void txInit(char **argv, const char *s)
 {
-    if (!qtx)
-        qtx = new Qtx((char*)s, argv);
+    qtx = new Qtx((char*)s, argv);
 }
 
 bool txNeedToCloseApplication()

@@ -83,7 +83,7 @@ Qtx::Qtx(char *s, char **argv_)
     font = NULL;
     dialog = NULL;
     argc = 1;
-    argv[0] = s;
+    //argv[0] = s;
     argv[1] = NULL;
     if(qtx == NULL) 
     app = new CustomApplication(argc, argv_); //QApplication(argc, argv_); // argv may be modified
@@ -139,6 +139,7 @@ inline void Qtx::___createWindow(int x, int y, int width, int height)
 
     container = new QTxContainer;
 
+    container->setWindowTitle(QString(title));
     container -> setGeometry(x, y, pixmap -> width(), pixmap -> height());
     container -> setPixmap(*pixmap);
     container -> setMinimumSize( pixmap -> width(), pixmap -> height() );
