@@ -57,14 +57,14 @@ const char* txGetModuleFileName (bool fileNameOnly /*= true*/)
     return qtx -> argv[0];
 }
 
-TXWINDOW txCreateWindow(char **argv, int width, int height, const char *title = NULL)
+TXWINDOW txCreateWindow(char **argv, int width, int height, const char *title)
 {
     txInit(argv, title);
     qtx -> createWindow(width, height);
     return qtx;
 }
 
-TXWINDOW txCreateWindow(char **argv, int x, int y, int width, int height, const char *title = NULL)
+TXWINDOW txCreateWindow(char **argv, int x, int y, int width, int height, const char *title)
 {
     txInit(argv, title);
     qtx -> createWindow(x, y, width, height);
@@ -499,7 +499,7 @@ HDCQ /*HDC*/ txDC()
     return qtx -> pixmap;
 }
 
-HDCQ /*HDC*/ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ /*HDC*/ bitmap=NULL, int size = 0)
+HDCQ /*HDC*/ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ /*HDC*/ bitmap, int size = 0)
 {// HBITMAPQ /*HDC*/ is an index in the system data area that contains pointer to the bitmap struct
     return qtx -> createDC(sizeX, sizeY, bitmap, size);
 }
@@ -554,7 +554,7 @@ unsigned txMessageBox(const char *text, const char *header="qTXLib сообща�
     return qtx -> messageBox(text, header, flags);
 }
 
-const char *txInputBox(const char *text = NULL, const char *caption = NULL, const char *input = NULL)
+const char *txInputBox(const char *text, const char *caption, const char *input)
 {
     return qtx -> inputBox(text, caption, input);
 }
@@ -596,32 +596,32 @@ bool txPlaySound(const char filename[]=NULL, DWORD mode=0)
     return true;
 }
 
-QPushButton *txButton(int x, int y, int width, int height, const char *caption, TXSLOT p = NULL, char *xml = NULL)
+QPushButton *txButton(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml)
 {
     return qtx -> dlgButton(x, y, width, height, (char*)caption, p, xml);
 }
 
-QTextEdit *txTextEdit(int x, int y, int width, int height, const char *caption, TXSLOT p = NULL, char *xml = NULL)
+QTextEdit *txTextEdit(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml)
 {
     return qtx -> dlgTextEdit(x, y, width, height, (char*)caption, p, xml);
 }
 
-QLineEdit *txEdit(int x, int y, int width, int height, const char *caption, TXSLOT p = NULL, char *xml = NULL)
+QLineEdit *txEdit(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml)
 {
     return qtx -> dlgEdit(x, y, width, height, (char*)caption, p, xml);
 }
 
-QLabel *txLabel(int x, int y, int width, int height, const char *caption, TXSLOT p = NULL, char *xml = NULL)
+QLabel *txLabel(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml)
 {
     return qtx -> dlgLabel(x, y, width, height, (char*)caption, p, xml);
 }
 
-QCheckBox *txCheckBox(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p = NULL, char *xml = NULL)
+QCheckBox *txCheckBox(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p, char *xml)
 {
     return qtx -> dlgCheckBox(x, y, width, height, (char*)caption, state, p, xml);
 }
 
-QRadioButton *txRadioButton(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p = NULL, char *xml = NULL)
+QRadioButton *txRadioButton(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p, char *xml)
 {
     return qtx -> dlgRadioButton(x, y, width, height, (char*)caption, state, p, xml);
 }
