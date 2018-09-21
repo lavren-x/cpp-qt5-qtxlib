@@ -103,7 +103,7 @@ int txExec()
     return status;
 }
 
-bool txSetColor(COLORREF color, double thickness=1)
+bool txSetColor(COLORREF color, double thickness)
 {
     qtx -> setColor(color, thickness);
     return true;
@@ -242,10 +242,10 @@ COLORREF txHSL2RGB (COLORREF hslColor)
     }
 
 
-bool txSelectFont(const char name[], int sizeY, int sizeX = -1,
-                  int bold = 0, bool italic = false,
-                  bool underline = false, bool strikeout = false,
-                  double angle = 0)
+bool txSelectFont(const char name[], int sizeY, int sizeX,
+                  int bold, bool italic,
+                  bool underline, bool strikeout,
+                  double angle)
 {
     qtx -> setFont(name, sizeY, sizeX, (bool)bold, italic, underline, strikeout, angle);
     return true;
@@ -406,7 +406,7 @@ bool In (const COORD& pt, const SMALL_RECT& rect)
 }
 
 
-bool txFloodFill (double x, double y, COLORREF color=TX_TRANSPARENT, DWORD mode=0)
+bool txFloodFill (double x, double y, COLORREF color, DWORD mode)
 {
     qtx -> floodFill(x, y, color);
     UNUSED(mode);
@@ -432,7 +432,7 @@ SIZE txGetTextExtent (const char text[])
     return t;
 }
 
-bool txDrawText (double x0, double y0, double x1, double y1, const char text[], unsigned format = 0)
+bool txDrawText (double x0, double y0, double x1, double y1, const char text[], unsigned format)
 {
     qtx -> drawText(x0, y0, ABS(x1-x0), ABS(y1-y0), format, QString(text));
     return true;
@@ -455,7 +455,7 @@ int txUpdateWindow(int update=true)
     return 0;
 }
 
-int txBegin(bool mode = false)
+int txBegin(bool mode)
 {
     if(mode) qtx -> beginDraw();
     return 0;
@@ -467,7 +467,7 @@ int txEnd()
     return 0;
 }
 
-bool txLock(bool wait=true)
+bool txLock(bool wait)
 {
     UNUSED(wait);
     return true;
@@ -484,7 +484,7 @@ bool txDestroyWindow()
     return true;
 }
 
-void txExitApp(int resultCode = 0)
+void txExitApp(int resultCode)
 {
     qtx->exitApp(resultCode);
 }
@@ -499,12 +499,12 @@ HDCQ /*HDC*/ txDC()
     return qtx -> pixmap;
 }
 
-HDCQ /*HDC*/ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ /*HDC*/ bitmap, int size = 0)
+HDCQ /*HDC*/ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ /*HDC*/ bitmap, int size)
 {// HBITMAPQ /*HDC*/ is an index in the system data area that contains pointer to the bitmap struct
     return qtx -> createDC(sizeX, sizeY, bitmap, size);
 }
 
-HDCQ /*HDC*/ txLoadImage(const char filename[], unsigned imageFlags=0, unsigned loadFlags=0)
+HDCQ /*HDC*/ txLoadImage(const char filename[], unsigned imageFlags, unsigned loadFlags)
 {
     return qtx -> loadImage(filename, imageFlags, loadFlags);
 }
@@ -515,19 +515,19 @@ bool txDeleteDC(HDCQ /*HDC*/ dc)
     return true;
 }
 
-bool txBitBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc=0, double ySrc=0, DWORD rOp=0)
+bool txBitBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, DWORD rOp)
 {
     qtx -> copyImage(dest, xDest, yDest, width, height, src, xSrc, ySrc, rOp);
     return true;
 }
 
-bool txTransparentBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc=0, double ySrc=0, COLORREF transColor=TX_BLACK)
+bool txTransparentBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, COLORREF transColor)
 {
     qtx -> copyImageTr(dest, xDest, yDest, width, height, src, xSrc, ySrc, transColor);
     return true;
 }
 
-bool txAlphaBlend (HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc=0, double ySrc=0, double alpha=1.0)
+bool txAlphaBlend (HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, double alpha)
 {
     qtx -> copyImageAlpha(dest, xDest, yDest, width, height, src, xSrc, ySrc, alpha);
     return true;
@@ -549,7 +549,7 @@ void txTimerEvent(TIMEREVENTHANDLER f, void *p, unsigned time)
     qtx -> addTimerHandler(f, p, time);
 }
 
-unsigned txMessageBox(const char *text, const char *header="qTXLib сообщает", unsigned flags=0)
+unsigned txMessageBox(const char *text, const char *header, unsigned flags)
 {
     return qtx -> messageBox(text, header, flags);
 }
@@ -588,7 +588,7 @@ bool txNotifyIcon(unsigned flags, const char title[], const char format[])
     return true;
 }
 
-bool txPlaySound(const char filename[]=NULL, DWORD mode=0)
+bool txPlaySound(const char filename[], DWORD mode)
 {
     qtx -> playSound(filename);
     //UNUSED(filename);

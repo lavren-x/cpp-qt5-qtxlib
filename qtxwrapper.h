@@ -36,9 +36,9 @@ POINT txGetExtent();
 
 const char* txGetModuleFileName (bool fileNameOnly);
 
-TXWINDOW txCreateWindow(char **argv, int width, int height, const char *title );
+TXWINDOW txCreateWindow(char **argv, int width, int height, const char *title = NULL );
 
-TXWINDOW txCreateWindow(char **argv, int x, int y, int width, int height, const char *title );
+TXWINDOW txCreateWindow(char **argv, int x, int y, int width, int height, const char *title = NULL );
 
 bool txLine(int x, int y, int x1, int y1);
 
@@ -50,7 +50,7 @@ bool txRectangle(int x, int y, int x1, int y1);
 
 int txExec();
 
-bool txSetColor(COLORREF color, double thickness);
+bool txSetColor(COLORREF color, double thickness = 1);
 
 bool txColor(unsigned red, unsigned green, unsigned blue);
 
@@ -74,10 +74,10 @@ COLORREF txRGB2HSL (COLORREF rgbColor);
 
 COLORREF txHSL2RGB (COLORREF hslColor);
 
-bool txSelectFont(const char name[], int sizeY, int sizeX,
-                  int bold, bool italic,
-                  bool underline, bool strikeout,
-                  double angle);
+bool txSelectFont(const char name[], int sizeY, int sizeX = -1,
+                  int bold = 0, bool italic = false,
+                  bool underline = false, bool strikeout = false,
+                  double angle = 0);
 
 unsigned txSetTextAlign (unsigned align);
 
@@ -122,7 +122,7 @@ bool In (const COORD& pt, const SMALL_RECT& rect);
 
 /*inline*/ double random (double left, double right);
 
-bool txFloodFill (double x, double y, COLORREF color, DWORD mode);
+bool txFloodFill (double x, double y, COLORREF color = TX_TRANSPARENT, DWORD mode = 0);
 
 int txGetTextExtentY (const char text[]);
 
@@ -130,7 +130,7 @@ int txGetTextExtentX (const char text[]);
 
 SIZE txGetTextExtent (const char text[]);
 
-bool txDrawText (double x0, double y0, double x1, double y1, const char text[], unsigned format);
+bool txDrawText (double x0, double y0, double x1, double y1, const char text[], unsigned format = 0);
 
 bool txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture();
 
@@ -138,33 +138,36 @@ bool txSelectObject(unsigned obj);
 
 int txUpdateWindow(int update);
 
-int txBegin(bool mode);
+int txBegin(bool mode = false);
 
 int txEnd();
 
-bool txLock(bool wait);
+bool txLock(bool wait = true);
 
 bool txUnlock();
 
 bool txDestroyWindow();
 
-void txExitApp(int resultCode);
+void txExitApp(int resultCode = 0);
 
 double txQueryPerformance();
 
-HDCQ /*HDC*/ txDC();
+HDCQ txDC();
 
-HDCQ /*HDC*/ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ /*HDC*/ bitmap, int size);
+HDCQ txCreateCompatibleDC(double sizeX, double sizeY, HBITMAPQ bitmap = NULL, int size = 0);
 
-HDCQ /*HDC*/ txLoadImage(const char filename[], unsigned imageFlags, unsigned loadFlags);
+HDCQ txLoadImage(const char filename[], unsigned imageFlags = 0, unsigned loadFlags = 0);
 
-bool txDeleteDC(HDCQ /*HDC*/ dc);
+bool txDeleteDC(HDCQ dc);
 
-bool txBitBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, DWORD rOp);
+bool txBitBlt(HDCQ dest, double xDest, double yDest, double width, double height,
+              HDCQ src, double xSrc = 0, double ySrc = 0, DWORD rOp = 0);
 
-bool txTransparentBlt(HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, COLORREF transColor);
+bool txTransparentBlt(HDCQ dest, double xDest, double yDest, double width, double height,
+                      HDCQ src, double xSrc = 0, double ySrc = 0, COLORREF transColor = TX_BLACK);
 
-bool txAlphaBlend (HDCQ /*HDC*/ dest, double xDest, double yDest, double width, double height, HDCQ /*HDC*/ src, double xSrc, double ySrc, double alpha);
+bool txAlphaBlend (HDCQ dest, double xDest, double yDest, double width, double height,
+                   HDCQ src, double xSrc = 0, double ySrc = 0, double alpha = 1.0);
 
 void txKeyEvent(KEYEVENTHANDLER f);
 
@@ -172,11 +175,11 @@ void txMouseEvent(MOUSEEVENTHANDLER f);
 
 void txTimerEvent(TIMEREVENTHANDLER f, void *p, unsigned time);
 
-unsigned txMessageBox(const char *text, const char *header, unsigned flags);
+unsigned txMessageBox(const char *text, const char *header = "QTXLib сообщает", unsigned flags = 0);
 
-const char *txInputBox(const char *text, const char *caption, const char *input);
+const char *txInputBox(const char *text = NULL, const char *caption = NULL, const char *input = NULL);
 
-bool txDrawDC(double x, double y, HDCQ /*HDC*/ dc);
+bool txDrawDC(double x, double y, HDCQ dc);
 
 void txSetWindow(TXWINDOW w);
 
@@ -186,19 +189,25 @@ void txGetWindowRect(TXWINDOW w, RECT *r);
 
 bool txNotifyIcon(unsigned flags, const char title[], const char format[]);
 
-bool txPlaySound(const char filename[], DWORD mode);
+bool txPlaySound(const char filename[] = NULL, DWORD mode = 0);
 
-QPushButton *txButton(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml);
+QPushButton *txButton(int x, int y, int width, int height, const char *caption,
+                      TXSLOT p = NULL, char *xml = NULL);
 
-QTextEdit *txTextEdit(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml);
+QTextEdit *txTextEdit(int x, int y, int width, int height, const char *caption,
+                      TXSLOT p = NULL, char *xml = NULL);
 
-QLineEdit *txEdit(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml);
+QLineEdit *txEdit(int x, int y, int width, int height, const char *caption,
+                  TXSLOT p = NULL, char *xml = NULL);
 
-QLabel *txLabel(int x, int y, int width, int height, const char *caption, TXSLOT p, char *xml);
+QLabel *txLabel(int x, int y, int width, int height, const char *caption,
+                TXSLOT p = NULL, char *xml = NULL);
 
-QCheckBox *txCheckBox(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p, char *xml);
+QCheckBox *txCheckBox(int x, int y, int width, int height, const char *caption, bool *state,
+                      TXSLOT p = NULL, char *xml = NULL);
 
-QRadioButton *txRadioButton(int x, int y, int width, int height, const char *caption, bool *state, TXSLOT p, char *xml);
+QRadioButton *txRadioButton(int x, int y, int width, int height, const char *caption, bool *state,
+                            TXSLOT p = NULL, char *xml = NULL);
 
 QGroupBox *txRadioGroup(int x, int y, int width, int height, const char *caption, int *id, TXSLOT p, char *xml, const char *s, ...);
 
