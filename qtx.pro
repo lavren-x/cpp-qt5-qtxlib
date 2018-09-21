@@ -1,17 +1,17 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-08-26T19:03:03
+# Project created by QtCreator 2018-09-18T06:49:44
 #
 #-------------------------------------------------
 
-QT       += core gui widgets multimedia
+QT       += widgets multimedia
 
 TARGET = qtx
-TEMPLATE = lib
+#TEMPLATE = lib
 
-DEFINES += QTX_LIBRARY
+#DEFINES += QTX_LIBRARY
+
 #DEFINES += EXTERN_QTX
-DEFINES += BUILD_LIB
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -34,7 +34,6 @@ HEADERS += \
         qtx.h \
         qtx_global.h \ 
     libqtx.h \
-    qtx_global.h \
     qtxcnt.h \
     qtxextern.h \
     qtxglobal.h \
@@ -43,6 +42,7 @@ HEADERS += \
     txdefs.h
 
 unix {
-    target.path = /usr/lib
+    //target.path = /usr/lib
+    target.path = $$OUT_PWD/../lib
     INSTALLS += target
 }

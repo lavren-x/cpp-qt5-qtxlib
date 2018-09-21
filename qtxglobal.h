@@ -1,5 +1,5 @@
 /*
-    qTXLib, (c) E.Gaevsky, A.Legalov, 2016. Remaked by I.Kuznetsov, 2018.
+    QTXLib, (c) E.Gaevsky, A.Legalov, 2016. Remaked by I.Kuznetsov, 2018.
     Simple cross-platform graphics library. Based on Qt.
 
 

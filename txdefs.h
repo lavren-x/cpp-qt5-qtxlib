@@ -1,5 +1,5 @@
 /*
-    qTXLib, (c) E.Gaevsky, A.Legalov, 2016. Remaked by I.Kuznetsov, 2018.
+    QTXLib, (c) E.Gaevsky, A.Legalov, 2016. Remaked by I.Kuznetsov, 2018.
     Simple cross-platform graphics library. Based on Qt.
 
 
@@ -9,6 +9,8 @@
 
 #ifndef TXDEFS_H
 #define TXDEFS_H
+
+
 #define RGB(r, g, b) ((int(r)<<16) | (int(g)<<8) | int(b))
 
 // windows definitions for text_align functions
@@ -173,7 +175,7 @@ _tx_auto_func_<T> _tx_auto_func  (T   func)
 #define _TX_QUOTE( sym )      #sym
 
 #if !defined (_TX_MODULE)
-    #define   _TX_MODULE      "qTXLib"
+    #define   _TX_MODULE      "QTXLib"
 #endif
 
 #define sizearr( arr )    ( sizeof (get_size_of_an_array_with_unknown_or_nonconst_size_ (arr)) )
@@ -210,6 +212,10 @@ typedef unsigned int COLORREF;
 
 //extern class LIB_CLASS Qtx;
 //extern class LIB_CLASS QTxPoint;
+
+class Qtx;
+class QTxPoint;
+class QPixmap;
 
 typedef QTxPoint POINT;
 typedef Qtx* TXWINDOW;
@@ -267,11 +273,11 @@ const int _TX_TIMEOUT = 1000;
 const unsigned _TX_BUFSIZE = 1024;
 const unsigned _TX_BIGBUFSIZE = 2048;
 const double txPI = 3.1415926;
-unsigned _txConsoleMode = 0;
-unsigned _txWindowStyle = 0;
-const char *_txConsoleFont = "Lucida Console";
-unsigned _txCursorBlinkInterval = 500;
-int _txWindowUpdateInterval = 25;
+//unsigned _txConsoleMode = 0;
+//unsigned _txWindowStyle = 0;
+//const char *_txConsoleFont = "Lucida Console";
+//unsigned _txCursorBlinkInterval = 500;
+//int _txWindowUpdateInterval = 25;
 
 
 template <typename T>
