@@ -1,16 +1,10 @@
-/*
-    QTXLib, (c) E.Gaevsky, A.Legalov, 2016. Remaked by I.Kuznetsov, 2018.
-    Simple cross-platform graphics library. Based on Qt.
+#include <TXLib.h>
+usimg namespace std;
+int main ()
+{
+txCreateWindow(800,600);
+    txSetPixel(77,77, RGB(176,77,35));
+    txLine(0,50,200,50);
+    return 0;
 
-
-    QTXLib main header file.
-*/
-
-#ifndef LIBQTX_H
-#define LIBQTX_H
-#ifndef EXTERN_QTX	// We should define this if we use extern libqtx.so
-#include "qtxwrapper.h"
-#else
-//#include "qtxextern.h"
-#endif
-#endif
+}
